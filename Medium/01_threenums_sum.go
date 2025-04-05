@@ -5,8 +5,8 @@ import (
 	"sort"
 )
 
-func threenums_sum(arr []int, target int) ([][]int, error) {
-	var result [][]int
+func threenums_sum(arr []int, target int) [][]int {
+	result := [][]int{}
 	// We want to return the triple from array i.e. [5, -3, -2] if target = 0, cause this sums up to 0.
 	// Idea:
 	// Sort an array
@@ -20,7 +20,8 @@ func threenums_sum(arr []int, target int) ([][]int, error) {
 	// 	  Length of array is less 3
 
 	if len(arr) < 3 {
-		return nil, fmt.Errorf("Array must have at least three elements!")
+		fmt.Println("Array must: have at least three elements!")
+		return result
 	}
 
 	sort.Ints(arr)
@@ -40,7 +41,7 @@ func threenums_sum(arr []int, target int) ([][]int, error) {
 			}
 		}
 	}
-	return result, nil
+	return result
 }
 
 func main() {
@@ -50,6 +51,8 @@ func main() {
 
 	arr1 := []int{1, 2} // Edge case
 
+	arr2 := []int{1, 2, 3} // No match
 	fmt.Println(threenums_sum(arr, target))
 	fmt.Println(threenums_sum(arr1, target))
+	fmt.Println(threenums_sum(arr2, 7))
 }
