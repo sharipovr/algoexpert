@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // Интуиция и план
 // Что такое Binary Search Tree (BST)?
 // Это бинарное дерево, где:
@@ -14,23 +12,23 @@ import "fmt"
 // remove(Value) — удаление первого найденного значения
 
 // Узел BST
-type BST struct {
+type BST15 struct {
 	Value int
-	Left  *BST
-	Right *BST
+	Left  *BST15
+	Right *BST15
 }
 
 // Вставка нового элемента
-func (tree *BST) Insert(num int) *BST {
+func (tree *BST15) Insert(num int) *BST15 {
 	if num < tree.Value {
 		if tree.Left == nil {
-			tree.Left = &BST{Value: num}
+			tree.Left = &BST15{Value: num}
 		} else {
 			tree.Left.Insert(num)
 		}
 	} else {
 		if tree.Right == nil {
-			tree.Right = &BST{Value: num}
+			tree.Right = &BST15{Value: num}
 		} else {
 			tree.Right.Insert(num)
 		}
@@ -39,7 +37,7 @@ func (tree *BST) Insert(num int) *BST {
 }
 
 // Проверка наличия значения
-func (tree *BST) Contains(num int) bool {
+func (tree *BST15) Contains(num int) bool {
 	if num < tree.Value {
 		if tree.Left == nil {
 			return false
@@ -55,14 +53,14 @@ func (tree *BST) Contains(num int) bool {
 }
 
 // Удаление узла
-func (tree *BST) Remove(num int) *BST {
+func (tree *BST15) Remove(num int) *BST15 {
 	// Мы используем вспомогательную рекурсивную функцию,
 	// чтобы отслеживать родителя узла.
 	return tree.remove(num, nil)
 }
 
 // Вспомогательная рекурсивная функция удаления
-func (tree *BST) remove(num int, parent *BST) *BST {
+func (tree *BST15) remove(num int, parent *BST15) *BST15 {
 	// В начале отработаем траверсинг дерева
 	if num < tree.Value {
 		// Идем влево если удаляемое значение меньше текущего
@@ -122,7 +120,7 @@ func (tree *BST) remove(num int, parent *BST) *BST {
 	// Возвращаем ссылку на (возможно изменённое) дерево
 	return tree
 }
-func (tree *BST) getMinValue() int {
+func (tree *BST15) getMinValue() int {
 	// Ищем самый "левый" узел — он и есть минимальный
 	if tree.Left == nil {
 		return tree.Value
@@ -130,12 +128,14 @@ func (tree *BST) getMinValue() int {
 	return tree.Left.getMinValue()
 }
 
-func main() {
-	bst := &BST{Value: 10}
-	bst.Insert(5).Insert(15).Insert(2).Insert(5).Insert(13).Insert(22).Insert(1).Insert(14)
-	bst.Insert(12) // Вставка нового значения
-
-	bst.Remove(10) // Удаление корня
-
-	fmt.Println(bst.Contains(15)) // true
-}
+// Uncomment further to run this program.
+// Otherwise, keep it commented because BST15 type is used in other further programs.
+//func main() {
+//	bst := &BST15{Value: 10}
+//	bst.Insert(5).Insert(15).Insert(2).Insert(5).Insert(13).Insert(22).Insert(1).Insert(14)
+//	bst.Insert(12) // Вставка нового значения
+//
+//	bst.Remove(10) // Удаление корня
+//
+//	fmt.Println(bst.Contains(15)) // true
+//}
